@@ -1,9 +1,9 @@
 {
-    "coin": "monero",
-    "currency": "btc",
+    "coin": "bitcoin",
+    "currency": "usd",
     "timespan": 24,
     "refresh_interval": 10,
-    "color": "hotpink",
+    "color": "springgreen",
     "dark_theme": true,
     "figsize": [20, 10],
     "background_cmd": "gsettings set org.gnome.desktop.background picture-uri PIC"

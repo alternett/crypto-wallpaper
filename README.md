@@ -33,7 +33,7 @@ coin             | The ID of the coin you want to display. [Here's the full list
 currency         | The currency you want to use. [Here's a list](https://api.coingecko.com/api/v3/simple/supported_vs_currencies) of supported currencies.
 timespan         | The timespan of the graph, measured in hours. Write 0 or "max" to show an all-time graph.
 refresh_interval | How often it will request info from the API (in seconds). PS: CoinGecko only update their data every few minutes, that's why you may not notice changes by lowering this.
-color            | The color of the graph. You can see all colors [here](https://matplotlib.org/stable/gallery/color/named_colors.html) or by [scrolling down](#colors).
+color            | The color of the graph. You can see all colors [here](https://matplotlib.org/stable/gallery/color/named_colors.html) or by [scrolling down](#colors). You can also use hex codes for the colors (`#ff9900`).
 dark_theme       | Toggles between dark theme (true) or light theme (false).
 figsize          | [The size of the image in inches](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.figure.html). Change the values according to your display size. In the format: [width, height]. You may need to experiment a bit with this.
 background_cmd   | If you're on Windows you can ignore this. If you're on Linux, this is the command that will change your background, scroll down to [notes for Linux users](#notes-for-linux-users) for more info.
