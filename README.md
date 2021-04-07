@@ -1,3 +1,7 @@
+# Crypto Wallpaper
+
+![How it can look](chart.png)
+
 ## Info
 A fairly simple Python script that uses the [CoinGecko API](https://www.coingecko.com/en/api) to replace your desktop wallpaper with a price chart of your favorite cryptocurrency. The script is also extremely easy to modify to your needs, feel free to do so! If you have any problems, feel free to send me a Reddit DM or open an issue (or open a pull request if you can fix it yourself)!
 
