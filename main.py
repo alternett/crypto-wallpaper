@@ -1,9 +1,8 @@
 import json
 import matplotlib.pyplot as plt
-import os
+from os.path import abspath
 import platform
 import requests
-import sys
 import time
 import traceback
 
@@ -14,7 +13,7 @@ if plat == "Linux":
 elif plat == "Windows":
     import ctypes
 else:
-    print("Currently unsupported OS, shouldn't be too easy to hard yourself though!")
+    print("Currently unsupported OS, shouldn't be too hard to add yourself though!")
 
 
 class SetBackground():
@@ -27,7 +26,7 @@ class SetBackground():
         self.plat = plat
 
     def set_wallpaper(self):
-        img_path = os.path.abspath(self.img_name)
+        img_path = abspath(self.img_name)
         if self.plat == "Windows":
             ctypes.windll.user32.SystemParametersInfoW(0x14, 0, img_path, 0)
 
@@ -39,15 +38,13 @@ class SetBackground():
 
             if img_path not in args:
                 raise Exception(
-                    'Image path is not present in config, remember to have "PIC" as an argument'
-                )
+                    'Image path is not present in config, remember to have "PIC" as an argument.')
 
             try:
                 subprocess.check_call(args)
-            except subprocess.CalledProcessError as e:
+            except (subprocess.CalledProcessError, FileNotFoundError) as e:
                 raise Exception(
-                    f'{e}\nError when changing wallpaper, correctly modify "background_cmd" in the config.'
-                )
+                    f'{e}\nError when changing wallpaper, correctly modify "background_cmd" in the config.')
 
     def reload_conf(self):
         self.conf = json.loads(open(self.conf_path, "r").read())
@@ -68,8 +65,11 @@ class SetBackground():
         try:
             res = json.loads(r.text)
         except json.decoder.JSONDecodeError:
-            # print(f"Failed to decode response: {r.text}")
-            sys.exit()
+            raise json.decoder.JSONDecodeError(
+                f"Failed to decode response: {r.text}")
+
+        if "error" in res:
+            raise Exception(res["error"])
 
         symbol = res["symbol"]
         name = res["name"]
@@ -89,12 +89,11 @@ class SetBackground():
         try:
             res = json.loads(r.text)
         except json.decoder.JSONDecodeError:
-            # print(f"Failed to decode response: {r.text}")
-            return None
+            raise json.decoder.JSONDecodeError(
+                f"Failed to decode response: {r.text}")
 
         if "error" in res:
-            print(res["error"])
-            return None
+            raise Exception(res["error"])
 
         return res["prices"]
 
@@ -127,7 +126,7 @@ class SetBackground():
         plt.title(title_str)
         plt.tick_params(bottom=False, labelbottom=False)
 
-        plt.savefig(self.img_name, dpi=300)
+        plt.savefig(self.img_name, dpi=self.conf["dpi"])
         plt.close()
 
     def loop(self):
@@ -144,6 +143,9 @@ class SetBackground():
                     curr_price = format(curr_price, ".8f")
             except TypeError:
                 curr_price = None
+            except IndexError:
+                raise Exception(
+                    "The selected coin doesn't have any price history in the selected range")
 
             if prices != None and curr_price != None and self.last_price != curr_price:
                 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(prices[-1][0]/1000)),

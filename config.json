@@ -6,5 +6,6 @@
     "color": "springgreen",
     "dark_theme": true,
     "figsize": [20, 10],
+    "dpi": 300,
     "background_cmd": "gsettings set org.gnome.desktop.background picture-uri PIC"
 }
