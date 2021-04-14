@@ -8,7 +8,7 @@
   - [Colors](#colors)
 
 ## Info
-A fairly simple Python script that uses the [CoinGecko API](https://www.coingecko.com/en/api) to replace your desktop wallpaper with a price chart of your favorite cryptocurrency. The script is also extremely easy to modify to your needs, feel free to do so! If you have any problems, feel free to send me a Reddit DM or open an issue (or open a pull request if you can fix it yourself)!
+A fairly simple Python script that uses the [CoinGecko API](https://www.coingecko.com/en/api) to replace your desktop wallpaper with a price chart of your favorite cryptocurrency. The script is also extremely easy to modify to your needs, feel free to do so! If you have any problems, feel free to send me a Reddit DM ([u/MoonTatas](https://www.reddit.com/user/MoonTatatas)) or open an issue (or open a pull request if you can fix it yourself)!
 
 If you want to donate:
 
@@ -45,7 +45,7 @@ coin             | The ID of the coin you want to display. [I made a website whe
 currency         | The currency you want to use. [I made a website where you can look up all supported currencies.](https://alternett.github.io/currencies)
 timespan         | The timespan of the graph, measured in hours. Write 0 or "max" to show an all-time graph.
 refresh_interval | How often it will request info from the API (in seconds). PS: CoinGecko only update their data every few minutes, that's why you may not notice changes by lowering this.
-color            | The color of the graph. You can see all colors [here](https://matplotlib.org/stable/gallery/color/named_colors.html) or by [scrolling down](#colors). You can also use hex codes for the colors (`#ff9900`).
+color            | The color of the graph. Set the color to `auto` to make it automatically switch between red and green. You can see all colors [here](https://matplotlib.org/stable/gallery/color/named_colors.html) or by [scrolling down](#colors). You can also use hex codes for the colors (`#ff9900`).
 dark_theme       | Toggles between dark theme (true) or light theme (false).
 figsize          | [The size of the image in inches](https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.figure.html). Change the values according to your display size. In the format: [width, height]. You may need to experiment a bit with this.
 dpi              | Dots per inch; higher DPI = higher resolution, but also higher resource use when generating the background image.

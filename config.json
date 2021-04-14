@@ -3,7 +3,7 @@
     "currency": "usd",
     "timespan": 24,
     "refresh_interval": 10,
-    "color": "springgreen",
+    "color": "auto",
     "dark_theme": true,
     "figsize": [20, 10],
     "dpi": 300,

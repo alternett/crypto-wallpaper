@@ -104,7 +104,14 @@ class SetBackground():
         y = [x[1] for x in prices]
 
         plt.figure(figsize=(self.conf["figsize"][0], self.conf["figsize"][1]))
-        plt.plot(x, y, color=self.conf["color"])
+
+        if "auto" in self.conf["color"]:
+            if y[-1] >= y[0]:
+                plt.plot(x, y, color="#4eaf0a")
+            else:
+                plt.plot(x, y, color="#e15241")
+        else:
+            plt.plot(x, y, color=self.conf["color"])
 
         plt.ylabel(f"Price in {self.currency}")
 
